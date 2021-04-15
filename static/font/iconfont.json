@@ -1,0 +1,44 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1817767",
+      "name": "live",
+      "font_class": "live",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "2142861",
+      "name": "radio",
+      "font_class": "radio",
+      "unicode": "e6b5",
+      "unicode_decimal": 59061
+    },
+    {
+      "icon_id": "10564325",
+      "name": "music",
+      "font_class": "music",
+      "unicode": "e713",
+      "unicode_decimal": 59155
+    },
+    {
+      "icon_id": "14772891",
+      "name": "rank",
+      "font_class": "rank",
+      "unicode": "e64e",
+      "unicode_decimal": 58958
+    },
+    {
+      "icon_id": "18629775",
+      "name": "Home",
+      "font_class": "Home",
+      "unicode": "e61b",
+      "unicode_decimal": 58907
+    }
+  ]
+}
