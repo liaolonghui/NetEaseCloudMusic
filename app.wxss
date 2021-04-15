@@ -2,5 +2,5 @@
 @import '/static/font/iconfont.wxss';
 
 page {
-  height: 100%;
+  min-height: 100%;
 }
