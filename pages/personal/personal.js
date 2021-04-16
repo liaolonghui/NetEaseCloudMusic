@@ -7,18 +7,31 @@ Page({
    */
   data: {
     coverTransform: 'translateY(0)',
-    coverTransition: ''
+    coverTransition: '',
+    userInfo: {} // 用户信息
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // 读取用户基本信息
+    const userInfo = wx.getStorageSync('userInfo')
+    if (userInfo) {
+      this.setData({
+        userInfo: JSON.parse(userInfo)
+      })
+    }
   },
 
+  // 跳转至login
+  toLogin: function () {
+    wx.reLaunch({
+      url: '/pages/login/login',
+    })
+  },
 
-  
+  // 动画效果
   handleTouchStart(e) {
     this.setData({
       coverTransition: ''
