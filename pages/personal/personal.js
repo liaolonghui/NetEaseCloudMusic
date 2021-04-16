@@ -1,4 +1,6 @@
 // pages/personal/personal.js
+import request from '../../utils/request'
+
 let startY, moveY, distanceY
 Page({
 
@@ -8,7 +10,8 @@ Page({
   data: {
     coverTransform: 'translateY(0)',
     coverTransition: '',
-    userInfo: {} // 用户信息
+    userInfo: {}, // 用户信息
+    recentPlayList: [], // 最近播放记录
   },
 
   /**
@@ -21,7 +24,22 @@ Page({
       this.setData({
         userInfo: JSON.parse(userInfo)
       })
+      // 获取用户播放记录
+      this.getUserRecentPlayList(this.data.userInfo.userId)
     }
+  },
+
+  // 获取用户播放记录
+  getUserRecentPlayList: async function (userId) {
+    let recentPlayList = await request('/user/record', { uid: userId, type: 0 })
+    let index = 0
+    recentPlayList = recentPlayList.allData.slice(0, 10).map(item => {
+      item.id = index++
+      return item
+    })
+    this.setData({
+      recentPlayList
+    })
   },
 
   // 跳转至login
