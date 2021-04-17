@@ -10,6 +10,8 @@ Page({
     navIndex: 0, // 当前nav标志
     videoList: [], // 视频列表
     videoId: '', // 当前音乐标识
+    videoUpdateTime: [], // 所有视频已播放时长
+    isTriggered: false, // 是否触发下拉刷新（样式）
   },
 
   /**
@@ -33,13 +35,16 @@ Page({
   // 获取视频信息
   async getVideoList (id) {
     const videoListData = await request('/video/group', { id })
+    // 隐藏loading
     wx.hideLoading()
     let index = 0
     while (index < videoListData.datas.length) {
       videoListData.datas[index].id = index++
     }
+    // 更新视频数据  并且关闭下拉刷新（样式）
     this.setData({
-      videoList: videoListData.datas
+      videoList: videoListData.datas,
+      isTriggered: false
     })
   },
   // 改变navIndex
@@ -65,9 +70,50 @@ Page({
       videoId: vid
     })
     this.videoContext = wx.createVideoContext(vid)
+    // 判断当前的视频是否有播放记录
+    const {videoUpdateTime} = this.data
+    const videoItem = videoUpdateTime.find(item => item.vid === vid)
+    if (videoItem) {
+      this.videoContext.seek(videoItem.currentTime)
+    }
     this.videoContext.play()
   },
 
+  // 记录视频已播放时长
+  handleTimeUpdata (e) {
+    const videoTimeObj = { vid: e.currentTarget.id, currentTime: e.detail.currentTime }
+    const {videoUpdateTime} = this.data
+    const videoItem = videoUpdateTime.find(item => item.vid === videoTimeObj.vid)
+    if (videoItem){
+      videoItem.currentTime = videoTimeObj.currentTime
+    } else {
+      videoUpdateTime.push(videoTimeObj)
+    }
+    // 更新videoUpdateTime的状态
+    this.setData({
+      videoUpdateTime
+    })
+  },
+  // 视频播放结束
+  handleEnd (e) {
+    // 移除videoUpdateTime当前播放视频的对象
+    const { videoUpdateTime } = this.data
+    videoUpdateTime.splice(videoUpdateTime.findIndex(item => item.id === e.currentTarget.id), 1)
+    this.setData({
+      videoUpdateTime
+    })
+  },
+
+  // 自定义下拉刷新
+  handleRefresher () {
+    this.getVideoList(this.data.navIndex)
+  },
+
+  // 自定义下拉加载
+  handleToLower () {
+    console.log('下拉')
+  },
+ 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -113,7 +159,18 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
+  onShareAppMessage: function ({from}) {
+    if (from === 'button') {
+      return {
+        title: '来自button的转发',
+        path: '/pages/video/video',
+        imageUrl: '/static/images/nvsheng.jpg'
+      }
+    } else {
+      return {
+        title: '来自menu的转发',
+        path: '/pages/video/video'
+      }
+    }
   }
 })
