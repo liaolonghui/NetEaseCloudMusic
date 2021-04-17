@@ -5,8 +5,18 @@ export default (url, data={}, method="GET") => {
       url: config.host + url,
       data,
       method,
-      success: ({data}) => {
-        resolve(data)
+      header: {
+        cookie: wx.getStorageSync('cookies') ? wx.getStorageSync('cookies').find(item => item.indexOf('MUSIC_U') !== -1) : ''
+      },
+      success: (res) => {
+        // 如果是login请求就保存其cookie
+        if (data.isLogin) {
+          wx.setStorage({
+            key: 'cookies',
+            data: res.cookies,
+          })
+        }
+        resolve(res.data)
       },
       fail: (err) => {
         reject(err)
