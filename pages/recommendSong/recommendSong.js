@@ -45,6 +45,14 @@ Page({
     })
   },
 
+  // 跳转至songDetail
+  toSongDetail (e) {
+    const ids = e.currentTarget.dataset.ids
+    wx.navigateTo({
+      url: '/pages/songDetail/songDetail?ids=' + ids,
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
