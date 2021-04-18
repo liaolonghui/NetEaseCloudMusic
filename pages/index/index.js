@@ -35,4 +35,10 @@ Page({
     }
   },
 
+  toRecommend () {
+    wx.navigateTo({
+      url: '/pages/recommendSong/recommendSong'
+    })
+  }
+
 })

@@ -6,6 +6,48 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "10885300",
+      "name": "暂停",
+      "font_class": "zanting2",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "2604479",
+      "name": "播放",
+      "font_class": "bofang",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "9974807",
+      "name": "随机",
+      "font_class": "suiji",
+      "unicode": "e71f",
+      "unicode_decimal": 59167
+    },
+    {
+      "icon_id": "11891809",
+      "name": "previous",
+      "font_class": "previous",
+      "unicode": "e672",
+      "unicode_decimal": 58994
+    },
+    {
+      "icon_id": "11891848",
+      "name": "next",
+      "font_class": "next",
+      "unicode": "e679",
+      "unicode_decimal": 59001
+    },
+    {
+      "icon_id": "17104684",
+      "name": "play-list-fill",
+      "font_class": "play-list-fill",
+      "unicode": "e812",
+      "unicode_decimal": 59410
+    },
+    {
       "icon_id": "973165",
       "name": "pinglun1",
       "font_class": "pinglun1",
