@@ -4,8 +4,8 @@
     "pages/video/video",
     "pages/personal/personal",
     "pages/login/login",
-    "pages/songDetail/songDetail",
-    "pages/recommendSong/recommendSong"
+    "pages/recommendSong/recommendSong",
+    "pages/songDetail/songDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",
