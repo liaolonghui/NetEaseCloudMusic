@@ -1,5 +1,6 @@
 // pages/songDetail/songDetail.js
 import PubSub from 'pubsub-js'
+import moment from 'moment'
 
 import request from '../../utils/request'
 // 先获取全局实例
@@ -14,6 +15,9 @@ Page({
     song: {}, // 歌曲详情对象
     musicId: '', //音乐ID
     musicLink: '', //保存音乐链接
+    currentTime: '00:00', // 已播放
+    durationTime: '00:00', // 总时长
+    currentWidth: 0, // 进度条已播放长度
   },
 
   /**
@@ -52,6 +56,36 @@ Page({
       appInstance.globalData.musicId = musicId
     })
 
+    // 播放完自动下一首
+    this.backgroundAudioManager.onEnded(() => {
+      // 订阅来自recommendSong发布的musicId消息
+      PubSub.subscribe('musicId', (msg, musicId) => {
+        this.getSong(musicId)
+        this.musicControl(true, musicId) // 因为是切换歌曲，所以要获取新的音乐url（不传入musicLink）
+        // 结束完各种操作后取消订阅
+        PubSub.unsubscribe('musicId')
+      })
+      // 发布消息给recommendSong页面
+      PubSub.publish('switchType', 'next')
+      // 重置一些信息
+      this.setData({
+        currentWidth: 0,
+        currentTime: '00:00'
+      })
+    })
+
+    // 已播放时长
+    this.backgroundAudioManager.onTimeUpdate(() => {
+      // 若现在的id和播放的id不同则不执行
+      if (musicId !== appInstance.globalData.musicId) return
+      let currentTime = moment(this.backgroundAudioManager.currentTime*1000).format('mm:ss')
+      let currentWidth = this.backgroundAudioManager.currentTime/this.backgroundAudioManager.duration * 450
+      this.setData({
+        currentTime,
+        currentWidth
+      })
+    })
+
   },
 
   // 修改音乐播放的状态
@@ -68,7 +102,8 @@ Page({
   async getSong (id) {
     const songData = await request('/song/detail', { ids: id })
     this.setData({
-      song: songData.songs[0]
+      song: songData.songs[0],
+      durationTime: moment(songData.songs[0].dt).format('mm:ss')
     })
     wx.setNavigationBarTitle({
       title: songData.songs[0].name,
