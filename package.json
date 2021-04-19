@@ -1,0 +1,23 @@
+{
+  "name": "wechat_demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liaolonghui/NetEaseCloudMusic.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liaolonghui/NetEaseCloudMusic/issues"
+  },
+  "homepage": "https://github.com/liaolonghui/NetEaseCloudMusic#readme",
+  "dependencies": {
+    "pubsub-js": "^1.9.3"
+  }
+}

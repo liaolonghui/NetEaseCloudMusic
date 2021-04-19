@@ -1,4 +1,6 @@
 // pages/recommendSong/recommendSong.js
+import PubSub from 'pubsub-js'
+
 import request from '../../utils/request'
 Page({
 
@@ -8,7 +10,8 @@ Page({
   data: {
     month: '',
     day: '',
-    recommendList: []
+    recommendList: [],
+    index: 0 // 用于标识点击的哪一个音乐
   },
 
   /**
@@ -35,6 +38,32 @@ Page({
       month: new Date().getMonth()+1,
       day: new Date().getDate()
     })
+
+    // 订阅来自songDetail发布的消息
+    PubSub.subscribe('switchType', (msg, type) => {
+      let { recommendList, index } = this.data // 把所有音乐的数组以及当前音乐标识拿出
+      if (type === 'prev') {
+        // 上一首
+        index -= 1 // 要切换歌曲的下标
+      } else {
+        // 下一首
+        index += 1 // 要切换歌曲的下标
+      }
+      // 如果index大于等于数组长度，则重置为0
+      if (index >= recommendList.length) {
+        index = 0
+      }
+      // 小于0则重置为数组长度-1
+      if (index < 0) {
+        index = recommendList.length - 1
+      }
+      let musicId = recommendList[index].id // 要切换音乐的id
+      this.setData({ // 更新标识
+        index
+      })
+      // 把音乐id回传给songDetail页面
+      PubSub.publish('musicId', musicId)
+    })
   },
 
   // 获取推荐数据
@@ -47,7 +76,12 @@ Page({
 
   // 跳转至songDetail
   toSongDetail (e) {
-    const ids = e.currentTarget.dataset.ids
+    const {ids, index} = e.currentTarget.dataset // ids是音乐id，index是音乐下标
+    // 更新当前音乐的标识
+    this.setData({
+      index
+    })
+    // 跳转
     wx.navigateTo({
       url: '/pages/songDetail/songDetail?ids=' + ids,
     })

@@ -1,4 +1,6 @@
 // pages/songDetail/songDetail.js
+import PubSub from 'pubsub-js'
+
 import request from '../../utils/request'
 // 先获取全局实例
 const appInstance = getApp()
@@ -11,6 +13,7 @@ Page({
     isPlay: false, // 标识音乐是否播放
     song: {}, // 歌曲详情对象
     musicId: '', //音乐ID
+    musicLink: '', //保存音乐链接
   },
 
   /**
@@ -18,11 +21,11 @@ Page({
    */
   onLoad: function (options) {
     // 音乐id
-    const ids = options.ids
+    const musicId = options.ids
     this.setData({
-      musicId: ids
+      musicId
     })
-    this.getSong(ids)
+    this.getSong(musicId)
 
     // 判断当前音乐是否在播放
     if (appInstance.globalData.isMusicPlay && appInstance.globalData.musicId === musicId) {
@@ -79,20 +82,50 @@ Page({
     // this.setData({
     //   isPlay
     // })
-    this.musicControl(isPlay, this.data.musicId)
+    const { musicId, musicLink } = this.data
+    this.musicControl(isPlay, musicId, musicLink) // 若musicLink是空串则会发请求获取音乐url
   },
 
   // 暂停/播放音乐的功能
-  async musicControl (isPlay, musicId) {
+  async musicControl (isPlay, musicId, musicLink) {
     if (isPlay) { // 播
-      let musicLinkData = await request('/song/url', { id: musicId })
+      if (!musicLink) { // 如果没有传入musicLink或者为空串则说明需要发请求获取
+        let musicLinkData = await request('/song/url', { id: musicId })
+        musicLink = musicLinkData.data[0].url
+        // 更新musicLink
+        this.setData({
+          musicLink
+        })
+      }
       // 添加title，src
-      this.backgroundAudioManager.src = musicLinkData.data[0].url
+      this.backgroundAudioManager.src = musicLink
       this.backgroundAudioManager.title = this.data.song.name
     } else { // 停
       this.backgroundAudioManager.pause()
     }
   },
+
+  // 切换歌曲
+  handleSwitch (e) {
+    const type = e.target.id
+
+    // 切换歌曲前先停止当前播放的音乐
+    this.backgroundAudioManager.stop()
+
+    // 订阅来自recommendSong发布的musicId消息
+    PubSub.subscribe('musicId', (msg, musicId) => {
+      // 获取音乐信息
+      this.getSong(musicId)
+      // 自动播放
+      this.musicControl(true, musicId) // 因为是切换歌曲，所以要获取新的音乐url（不传入musicLink）
+      // 结束完各种操作后取消订阅
+      PubSub.unsubscribe('musicId')
+    })
+    // 发布消息给recommendSong页面
+    PubSub.publish('switchType', type)
+
+  },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
