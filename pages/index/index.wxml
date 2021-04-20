@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="index-page">
   <!-- swiper -->
-  <swiper class="banners" indicator-dots indicator-color="ivory" indicator-active-color="#d43c33">
+  <swiper class="banners" indicator-dots indicator-color="ivory" indicator-active-color="#d43c33" autoplay interval="3000">
     <swiper-item wx:for="{{bannerList}}" wx:key="bannerId">
       <image src="{{item.pic}}"></image>
     </swiper-item>

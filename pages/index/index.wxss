@@ -64,7 +64,7 @@
   padding: 20rpx;
 }
 .topListSwiper {
-  height: 400rpx;
+  height: 450rpx;
 }
 .swiperItem {
   width: 95%;
