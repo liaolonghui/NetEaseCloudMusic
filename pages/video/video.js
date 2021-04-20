@@ -22,6 +22,13 @@ Page({
     this.getNavList()
   },
 
+  // 去搜索页
+  toSearch () {
+    wx.navigateTo({
+      url: '/pages/search/search',
+    })
+  },
+
   // 获取导航列表
   async getNavList () {
     const navListData = await request('/video/group/list')

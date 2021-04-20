@@ -11,6 +11,7 @@ Page({
     hotList: [],
     searchContent: '', // 搜索输入框的值（用bindinput方法同步更新）
     searchList: [], //模糊搜索到的数据
+    historyList: [], // 历史搜索记录
   },
 
   /**
@@ -19,6 +20,33 @@ Page({
   onLoad: function (options) {
     // 获取placeholder和热搜榜数据
     this.getSearchData()
+    // 获取本地保存的searchHistory（没有则用[]）
+    this.setData({
+      historyList: wx.getStorageSync('searchHistory') || []
+    })
+  },
+
+  // 清空搜索框
+  clearSearchContent () {
+    this.setData({
+      searchContent: '',
+      searchList: []
+    })
+  },
+
+  // 删除历史记录
+  deleteHistory () {
+    wx.showModal({
+      content: '确认清除历史记录？',
+      success: (res) => {
+        if (!res.cancel) { // 确认
+          this.setData({
+            historyList: []
+          })
+          wx.removeStorageSync('searchHistory')
+        }
+      }
+    })
   },
 
   // 获取默认搜索和热搜榜数据
@@ -54,10 +82,20 @@ Page({
       })
       return
     }
-    const searchListData = await request('/search', { keywords: this.data.searchContent })
+    const { searchContent, historyList } = this.data
+    const searchListData = await request('/search', { keywords: searchContent })
     this.setData({
       searchList: searchListData.result.songs
     })
+    // history
+    if (historyList.indexOf(searchContent) !== -1) {
+      historyList.splice(historyList.indexOf(searchContent), 1)
+    }
+    historyList.unshift(searchContent)
+    this.setData({
+      historyList
+    })
+    wx.setStorageSync('searchHistory', historyList)
   },
 
   /**

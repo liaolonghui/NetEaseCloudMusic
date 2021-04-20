@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "18261678",
+      "name": "delate",
+      "font_class": "delate",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
       "icon_id": "745701",
       "name": "search",
       "font_class": "search",

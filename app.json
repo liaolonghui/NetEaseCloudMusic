@@ -1,10 +1,10 @@
 {
   "pages": [
-    "pages/search/search",
     "pages/index/index",
     "pages/video/video",
     "pages/personal/personal",
     "pages/login/login",
+    "pages/search/search",
     "pages/recommendSong/recommendSong",
     "pages/songDetail/songDetail"
   ],

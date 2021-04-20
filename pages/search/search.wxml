@@ -3,9 +3,9 @@
   <view class="header">
     <view class="searchInput">
       <text class="iconfont icon-search searchIcon"></text>
-      <input type="text" placeholder="{{placeholderContent}}" placeholder-class="placeholder" bindinput="handleInputChange" />
+      <input type="text" value="{{searchContent}}" placeholder="{{placeholderContent}}" placeholder-class="placeholder" bindinput="handleInputChange" />
     </view>
-    <text class="cancel">取消</text>
+    <text class="cancel" bindtap="clearSearchContent">取消</text>
   </view>
 
   <!-- 搜索内容展示 -->
@@ -22,6 +22,13 @@
   </block>
 
   <block wx:else>
+    <!-- 搜索的历史记录 -->
+    <view class="history" wx:if="{{historyList.length}}">
+      <view class="title">历史</view>
+      <view class="historyItem" wx:for="{{historyList}}" wx:key="item">{{item}}</view>
+      <!-- 删除区域 -->
+      <text class="iconfont icon-delate delete" bindtap="deleteHistory"></text>
+    </view>
     <!-- 热搜榜 -->
     <view class="hotContainer">
       <view class="title">热搜榜</view>
