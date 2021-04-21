@@ -39,6 +39,13 @@ Page({
     wx.navigateTo({
       url: '/pages/recommendSong/recommendSong'
     })
+  },
+
+
+  toTemplate () {
+    wx.navigateTo({
+      url: '/pages/useTemplate/useTemplate',
+    })
   }
 
 })

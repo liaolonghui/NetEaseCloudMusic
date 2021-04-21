@@ -6,7 +6,8 @@
     "pages/login/login",
     "pages/search/search",
     "pages/recommendSong/recommendSong",
-    "pages/songDetail/songDetail"
+    "pages/songDetail/songDetail",
+    "pages/useTemplate/useTemplate"
   ],
   "window": {
     "backgroundTextStyle": "light",

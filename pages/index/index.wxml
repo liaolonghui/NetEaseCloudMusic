@@ -12,19 +12,19 @@
       <text class="iconfont icon-Home"></text>
       <text>每日推荐</text>
     </view>
-    <view class="navItem">
+    <view class="navItem" bindtap="toTemplate">
       <text class="iconfont icon-music"></text>
       <text>歌单</text>
     </view>
-    <view class="navItem">
+    <view class="navItem" bindtap="toTemplate">
       <text class="iconfont icon-rank"></text>
       <text>排行榜</text>
     </view>
-    <view class="navItem">
+    <view class="navItem" bindtap="toTemplate">
       <text class="iconfont icon-radio"></text>
       <text>电台</text>
     </view>
-    <view class="navItem">
+    <view class="navItem" bindtap="toTemplate">
       <text class="iconfont icon-live"></text>
       <text>直播</text>
     </view>
