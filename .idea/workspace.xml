@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4d9b7bcb-c7ab-40a5-a736-66e6b120b0ae" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/recommendSong/recommendSong.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/recommendSong/recommendSong.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/recommendSong/recommendSong.wxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/recommendSong/recommendSong.wxss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/songDetail/songDetail.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/songDetail/songDetail.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/songDetail/songDetail.wxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/songDetail/songDetail.wxss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/useTemplate/useTemplate.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/useTemplate/useTemplate.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/useTemplate/useTemplate.wxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/useTemplate/useTemplate.wxss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/video/video.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/video/video.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1rTWnXEtMB3u896bTkbnR2wOCG7" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4d9b7bcb-c7ab-40a5-a736-66e6b120b0ae" name="Default Changelist" comment="" />
+      <created>1619000726885</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1619000726885</updated>
+    </task>
+    <servers />
+  </component>
+</project>

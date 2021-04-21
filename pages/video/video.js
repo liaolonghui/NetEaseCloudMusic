@@ -18,6 +18,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 是否登录
+    const userInfo = wx.getStorageSync('userInfo')
+    if (!userInfo) {
+      wx.showToast({
+        title: '请先登录',
+        icon: 'none',
+        success: () => {
+          wx.reLaunch({
+            url: '/pages/login/login',
+          })
+        }
+      })
+    }
     // 获取导航列表数据
     this.getNavList()
   },

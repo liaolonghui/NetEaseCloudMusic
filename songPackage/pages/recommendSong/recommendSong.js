@@ -1,7 +1,7 @@
 // pages/recommendSong/recommendSong.js
 import PubSub from 'pubsub-js'
 
-import request from '../../utils/request'
+import request from '../../../utils/request'
 Page({
 
   /**
@@ -83,7 +83,7 @@ Page({
     })
     // 跳转
     wx.navigateTo({
-      url: '/pages/songDetail/songDetail?ids=' + ids,
+      url: '/songPackage/pages/songDetail/songDetail?ids=' + ids,
     })
   },
 

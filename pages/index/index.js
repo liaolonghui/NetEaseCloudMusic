@@ -37,14 +37,14 @@ Page({
 
   toRecommend () {
     wx.navigateTo({
-      url: '/pages/recommendSong/recommendSong'
+      url: '/songPackage/pages/recommendSong/recommendSong'
     })
   },
 
 
   toTemplate () {
     wx.navigateTo({
-      url: '/pages/useTemplate/useTemplate',
+      url: '/otherPackage/pages/useTemplate/useTemplate',
     })
   }
 

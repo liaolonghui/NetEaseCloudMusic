@@ -14,7 +14,7 @@
     <!-- 总进度条 -->
     <view class="barControl">
       <!-- 实时的进度条 -->
-      <view class="audio-currentTime-Bar" style="width: {{currentWidth}}rpx;">
+      <view class="audio-currentTime-Bar" style="width: {{currentWidth+'rpx'}};">
         <!-- 小圆球 -->
         <view class="audio-cricle"></view>
       </view>
